@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Buy Me a Coffee Clone
 
-## Getting Started
+A Next.js application that allows creators to receive support from their audience through Razorpay payments.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 GitHub Authentication
+- 💳 Razorpay Payment Integration
+- 👤 User Profiles
+- 💰 Support System
+- 📊 Payment History
+- 🎨 Customizable Profile & Cover Pictures
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- Node.js 18+ installed
+- MongoDB Atlas account
+- GitHub account (for authentication)
+- Razorpay account (for payments)
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory with these variables:
+
+```env
+GITHUB_ID=your_github_oauth_client_id
+GITHUB_SECRET=your_github_oauth_client_secret
+NEXT_PUBLIC_KEY_ID=your_razorpay_key_id
+KEY_SECRET=your_razorpay_secret_key
+MONGODB_URI=your_mongodb_atlas_uri
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/buy-me-a-coffee.git
+   cd buy-me-a-coffee
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Configure GitHub OAuth**
+   - Go to GitHub Settings → Developer settings → OAuth Apps
+   - Create a new OAuth App
+   - Set homepage URL to `http://localhost:3000`
+   - Set callback URL to `http://localhost:3000/api/auth/callback/github`
+   - Copy Client ID and Client Secret to `.env.local`
 
-To learn more about Next.js, take a look at the following resources:
+4. **Set up MongoDB Atlas**
+   - Create a MongoDB Atlas account
+   - Create a new cluster
+   - Get your connection string
+   - Add it to `MONGODB_URI` in `.env.local`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Configure Razorpay**
+   - Create a Razorpay account
+   - Get your Key ID and Secret from Dashboard → Settings → API Keys
+   - Add them to `.env.local`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+6. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **User Registration/Login**
+   - Click "Login" and authenticate with GitHub
+   - First-time users are automatically registered
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Setup Creator Profile**
+   - Go to Dashboard
+   - Add your display name
+   - Add profile/cover pictures (URLs)
+   - Add your Razorpay credentials
+
+3. **Receive Payments**
+   - Share your profile URL (`yourdomain.com/username`)
+   - Supporters can send payments through Razorpay
+   - View supporter list and payment history
+
+## Project Structure
+
+```
+buy-me-a-coffee/
+├── app/                    # Next.js 13 app directory
+│   ├── api/               # API routes
+│   ├── [username]/        # Dynamic user profiles
+│   ├── dashboard/         # Dashboard page
+│   └── login/            # Login page
+├── components/            # React components
+├── models/               # MongoDB models
+└── actions/              # Server actions
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Tech Stack
+
+- Next.js 13 (App Router)
+- MongoDB & Mongoose
+- NextAuth.js
+- Razorpay
+- Tailwind CSS
+
+## Deployment
+
+1. Create a Vercel account
+2. Connect your GitHub repository
+3. Add environment variables in Vercel dashboard
+4. Deploy!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Support
+
+If you found this project helpful, consider supporting me:
+[Your Buy Me a Coffee Profile Link]
