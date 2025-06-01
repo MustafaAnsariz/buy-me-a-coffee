@@ -61,7 +61,6 @@ const PaymentPage = ({ username }) => {
 
     getData();
     fetchPaymentsForUser();
-    // console.log(currentUser) // This might log the initial empty state due to async nature
   }, [username]); // Effect depends only on username
 
   useEffect(() => {
