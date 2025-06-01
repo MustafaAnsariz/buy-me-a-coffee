@@ -10,7 +10,7 @@ export default async function Page(props) {
 }
 
 export async function generateMetadata({ params }) {
-  const resolvedParams = await params; // Await params in case it's a Promise
+  const resolvedParams = await params; // Resolve the promise
   const username = resolvedParams.username;
   return {
     title: `Support ${username} - Buy Me a Coffee`,

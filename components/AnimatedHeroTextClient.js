@@ -1,4 +1,4 @@
-// File: components/AnimatedHeroTextClient.js
+
 "use client";
 
 import { motion } from "framer-motion";

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import User from "@/models/User"; // Your User model
+import User from "@/models/User"; 
 import { getServerSession } from "next-auth";
 import mongoose from "mongoose";
-import { fetchActiveCreators } from "@/actions/fetchActiveCreators"; // Your server action
+import { fetchActiveCreators } from "@/actions/fetchActiveCreators"; 
 
-// Import your new animated client components here (examples below)
-import AnimatedHeroText from "@/components/AnimatedHeroTextClient"; // Example
-import AnimatedSection from "@/components/AnimatedSectionClient"; // Example for other sections
+
+import AnimatedHeroText from "@/components/AnimatedHeroTextClient"; 
+import AnimatedSection from "@/components/AnimatedSectionClient"; 
 
 export default async function Home() {
   const session = await getServerSession();
@@ -35,7 +35,7 @@ export default async function Home() {
             A crowdfunding platform for creators. Get funded by your followers.
           </p>
        
-          {/* Apply mx-auto to this paragraph */}
+          
           <p className="text-md md:text-lg opacity-60 font-normal mt-2 max-w-xl px-4 mx-auto">
             Easily create your page, share it with your audience, and start receiving support for your creative work in minutes!
           </p>
@@ -56,10 +56,10 @@ export default async function Home() {
       </div>
 
 
-      {/* Separator */}
+      
       <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-12 md:my-16"></div>
 
-      {/* Discover Creators Section - Wrapped in AnimatedSection */}
+      
       <AnimatedSection>
         <div className="container mx-auto px-4 py-12 md:py-16 text-white">
           <div className="flex flex-col items-center justify-center text-center mb-12">
@@ -77,7 +77,7 @@ export default async function Home() {
               <div className="flex flex-wrap justify-center items-stretch gap-8">
                 {activeCreators.map((creator, index) => (
                   <div key={creator.username} className="w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1.333rem)] lg:w-[calc(25%-1.5rem)] flex">
-                    {/* Individual card animation can be done inside this Link or its child if needed */}
+                    
                     <Link href={`/${creator.username}`} className="w-full h-full">
                       <div className="bg-slate-800 rounded-xl shadow-xl p-6 hover:bg-slate-700/80 transition-all duration-300 flex flex-col items-center text-center h-full transform hover:-translate-y-2 hover:shadow-purple-500/30">
                         <img
@@ -113,32 +113,32 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-      </AnimatedSection> {/* End of AnimatedSection for Discover Creators */}
+      </AnimatedSection> 
 
 
-      {/* Separator */}
+      
       <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-12 md:my-16"></div>
 
-      {/* Your Followers Section - Wrapped in AnimatedSection */}
+     
       <AnimatedSection>
         <div className="text-white container mx-auto py-12 md:py-16 px-4">
           <h2 className="text-center font-bold text-4xl md:text-5xl mb-12">
             Your Followers Can Buy You a Coffee
           </h2>
           <div className="flex flex-col md:flex-row justify-around items-stretch gap-6 md:gap-8">
-            {/* Card 1 */}
+           
             <div className="flex flex-col items-center text-center w-full md:w-1/3 bg-slate-800 p-8 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:bg-slate-700/80 hover:shadow-blue-500/30 transform hover:-translate-y-1">
               <img className="rounded-full w-24 h-24 mb-5" src="/credit-card.gif" alt="Animated credit card" />
               <p className="font-bold text-2xl mb-2">Take My Money</p>
               <p className="opacity-70 text-md">Take the plunge and get started with your creative journey.</p>
             </div>
-            {/* Card 2 */}
+         
             <div className="flex flex-col items-center text-center w-full md:w-1/3 bg-slate-800 p-8 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:bg-slate-700/80 hover:shadow-purple-500/30 transform hover:-translate-y-1">
               <img className="rounded-full w-24 h-24 mb-5" src="/pengu-inflation.gif" alt="Animated penguin with money" />
               <p className="font-bold text-2xl mb-2">Fund Yourself</p>
               <p className="opacity-70 text-md">Your fans are ready to support your passion and buy you a coffee.</p>
             </div>
-            {/* Card 3 */}
+           
             <div className="flex flex-col items-center text-center w-full md:w-1/3 bg-slate-800 p-8 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:bg-slate-700/80 hover:shadow-green-500/30 transform hover:-translate-y-1">
               <img className="rounded-full w-24 h-24 mb-5" src="/rich.gif" alt="Animated character getting rich" />
               <p className="font-bold text-2xl mb-2">Get Rich</p>
@@ -146,12 +146,11 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </AnimatedSection> {/* End of AnimatedSection for Your Followers */}
+      </AnimatedSection> 
 
-      {/* Separator */}
+    
       <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-12 md:my-16"></div>
 
-      {/* Learn More About Us Section - Wrapped in AnimatedSection */}
       <AnimatedSection>
         <div className="text-white container mx-auto py-12 md:py-16 px-4 flex flex-col items-center gap-6">
           <h2 className="text-center font-bold text-4xl md:text-5xl mb-8">Learn More About Us</h2>
@@ -167,7 +166,7 @@ export default async function Home() {
             </iframe>
           </div>
         </div>
-      </AnimatedSection> {/* End of AnimatedSection for Learn More */}
+      </AnimatedSection> 
       
       <div className="py-8"></div>
     </>

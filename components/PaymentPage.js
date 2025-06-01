@@ -1,18 +1,18 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'; // Corrected import
+import React, { useState, useEffect } from 'react'; 
 import Script from 'next/script';
-import { initiate, fetchuser } from "@/actions/useractions"; // Combined imports
+import { initiate, fetchuser } from "@/actions/useractions"; 
 import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
-import { useSearchParams, useRouter } from 'next/navigation'; // Combined imports
+import { useSearchParams, useRouter } from 'next/navigation'; 
 
 const PaymentPage = ({ username }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const [payments, setPayments] = useState([]);
-  const [currentUser, setCurrentUser] = useState({}); // Keeping your initialization
+  const [currentUser, setCurrentUser] = useState({}); 
   const [paymentform, setPaymentform] = useState({
     name: "",
     message: "",
@@ -80,11 +80,11 @@ const PaymentPage = ({ username }) => {
       // Remove the query parameter to prevent toast on refresh/back, without full reload
       router.replace(`/${username}`, undefined, { shallow: true });
     }
-  }, [searchParams, username, router]); // Dependencies for this effect
+  }, [searchParams, username, router]); 
 
   const handlechange = (e) => {
     setPaymentform({ ...paymentform, [e.target.name]: e.target.value });
-    setError(""); // Clear error on change
+    setError(""); 
   };
 
   const pay = async (presetAmount) => {
@@ -97,7 +97,7 @@ const PaymentPage = ({ username }) => {
 
     // Check if Razorpay credentials exist
     if (!currentUser.RazorpayId || !currentUser.RazorpaySecret) {
-      toast.warning(`${username} needs to set up their payment credentials in dashboard.`, {
+      toast.warning(`${username} needs to set up their payment credentials in dashboard to accept payments.`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -110,9 +110,9 @@ const PaymentPage = ({ username }) => {
       return;
     }
 
-    // Validate Razorpay Key ID format (they typically start with 'rzp_')
+    
     if (!currentUser.RazorpayId.startsWith('rzp_')) {
-      toast.error('Invalid Razorpay credentials. Please check the Key ID format.', {
+      toast.error(`Invalid Razorpay credentials. ${username} needs to update their credentials.`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -125,7 +125,7 @@ const PaymentPage = ({ username }) => {
       return;
     }
 
-    // Rest of your validation
+    
     if (!isPresetPayment && !paymentform.name && !session?.user?.name) {
       setError("Name is required.");
       return;

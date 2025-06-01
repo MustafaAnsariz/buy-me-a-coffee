@@ -1,7 +1,7 @@
-// File: app/creators/page.js
+
 import Link from "next/link";
 import { fetchActiveCreators } from "@/actions/fetchActiveCreators";
-import Image from "next/image"; // If using Next/Image for profile pictures
+import Image from "next/image"; 
 
 export const metadata = {
   title: 'Discover Creators - Buy Me a Coffee',

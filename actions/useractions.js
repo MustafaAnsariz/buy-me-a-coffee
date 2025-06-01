@@ -4,8 +4,7 @@ import Razorpay from "razorpay";
 import Payment from "@/models/Payment";
 import mongoose from "mongoose";
 import User from "@/models/User";
-// import {set} from "mongoose"; // 'set' from mongoose is not typically used like this for updates.
-// import Email from "next-auth/providers/email"; // This import seems unused in the provided code.
+
 
 export const initiate = async (amount, to_user, paymentform) => {
   try {
@@ -31,7 +30,7 @@ export const initiate = async (amount, to_user, paymentform) => {
     });
 
     const options = {
-      amount: Number(amount) * 100, // Ensure amount is a number
+      amount: Number(amount) * 100, 
       currency: "INR",
     };
 
@@ -39,7 +38,7 @@ export const initiate = async (amount, to_user, paymentform) => {
 
     await Payment.create({
       oid: x.id,
-      amount: Number(amount), // Ensure amount is a number
+      amount: Number(amount), 
       to_user: to_user,
       name: paymentform.name,
       message: paymentform.message,

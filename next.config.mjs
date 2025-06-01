@@ -2,13 +2,16 @@
 const nextConfig = {
   images: {
     domains: [
-      'avatars.githubusercontent.com',  // For GitHub avatar images
-      'images.unsplash.com',           // If using Unsplash images
-      'i.imgur.com'                    // If using Imgur for profile/cover pictures
+      'avatars.githubusercontent.com',    // GitHub avatars
+      'images.unsplash.com',             // Unsplash images
+      'i.imgur.com',                     // Imgur images
+      'lh3.googleusercontent.com',       // Google profile pictures
+      'cdn.discordapp.com',             // Discord avatars
+      'res.cloudinary.com'              // If using Cloudinary
     ],
   },
   experimental: {
-    serverActions: true,  // Enable server actions
+    serverActions: true,
   },
   reactStrictMode: true,
   swcMinify: true,
