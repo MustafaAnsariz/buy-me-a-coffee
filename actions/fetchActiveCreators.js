@@ -3,28 +3,42 @@
 
 import mongoose from "mongoose";
 import User from "@/models/User";
-// ... other imports and functions ...
 
-export const fetchActiveCreators = async (limit = 10) => {
-  if (!process.env.MONGODB_URI) {
-    throw new Error("MONGODB_URI is not defined");
-  }
-  await mongoose.connect(process.env.MONGODB_URI);
-  // console.log("Connected to MongoDB for fetchActiveCreators");
+let cachedConnection = null;
+
+async function connectDB() {
+  if (cachedConnection) return;
 
   try {
-    const activeCreators = await User.find({
-      RazorpayId: { $ne: null, $ne: "" }, // RazorpayId is not null and not an empty string
-      RazorpaySecret: { $ne: null, $ne: "" } // RazorpaySecret is not null and not an empty string
-    })
-    .sort({ createdAt: -1 }) // Optional: sort by newest, or by last payment received, etc.
-    .limit(limit)
-    .select("username name profilePicture") // Select only needed fields
-    .lean(); // Use .lean() for faster, plain JS objects
+    await mongoose.connect(process.env.MONGODB_URI);
+    cachedConnection = mongoose.connection;
+    console.log("Connected to MongoDB for fetchActiveCreators");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw new Error("Failed to connect to database");
+  }
+}
+
+export const fetchActiveCreators = async (limit = 10) => {
+  try {
+    await connectDB();
+
+    const query = {
+      $and: [
+        { RazorpayId: { $exists: true, $ne: "" } },
+        { RazorpaySecret: { $exists: true, $ne: "" } }
+      ]
+    };
+
+    const activeCreators = await User.find(query)
+      .sort({ createdAt: -1 })
+      .limit(limit ? parseInt(limit) : undefined)
+      .select("username name profilePicture")
+      .lean();
 
     return activeCreators;
   } catch (error) {
     console.error("Error fetching active creators:", error);
-    return []; // Return an empty array on error
+    throw error; // Let the component handle the error
   }
 };

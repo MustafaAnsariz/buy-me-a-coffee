@@ -242,11 +242,11 @@ const PaymentPage = ({ username }) => {
 
       <div className="cover relative">
         <img
-          className="object-cover w-full h-[300px] md:h-[400px]"
-          src={currentUser?.coverPicture || "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/7784493/0160fc50007d43b9a1a2bf3d92cffb69/eyJoIjozNjAsInciOjM2MH0%3D/1.jpeg?token-hash=2mPBirHLyB6VsPhMoWw7I5sZjTko3lwDQUjF0ynM45s%3D&token-time=1749081600"}
+          className="object-cover w-full h-[300px] md:h-[450px]"
+          src={currentUser?.coverPicture || "https://4kwallpapers.com/images/walls/thumbs_3t/6334.jpg"}
           alt="Cover"
         />
-         <div className="absolute inset-0 bg-black opacity-30"></div>
+         <div className="absolute inset-0 bg-black opacity-20"></div>
       </div>
       <div className="relative flex justify-center -mt-[50px] md:-mt-[75px] z-10">
         <img
